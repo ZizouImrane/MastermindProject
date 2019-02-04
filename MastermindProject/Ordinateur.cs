@@ -1,11 +1,12 @@
 ﻿using System;
 namespace MastermindProject
 {
-    public class Ordinateur : Joueur
+   /* public class Ordinateur : Joueur
     {
         public Ordinateur()
         {
             this.Nom = "Computer";
+
         }
         public void saisirCode()
         {
@@ -16,5 +17,5 @@ namespace MastermindProject
                 k++;
             }
         }
-    }
+    }*/
 }
