@@ -52,6 +52,24 @@ namespace MastermindProject
             }
         }
 
+        public bool compareCode(int[] tab1, int[] tab2)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    if (tab1[i] == tab2[j])
+                    {
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
 
         public void play(Joueur joueur1 ,Joueur joueur2)
         {
@@ -77,7 +95,8 @@ namespace MastermindProject
                 else
                 {
 
-                    if (tour == 0) { 
+                    if (tour == 0) {
+                        Console.Out.WriteLine("Manche n° : {0}", nb_manche);
                         joueur1.saisirCodeManche();
                         reponse_placement(joueur1.Code_devine,joueur2.Code_secret); // on compare le code que le joueur devine avec le code secret de l'autre joueur
                         joueur1.Nombre_coup++;
@@ -88,7 +107,7 @@ namespace MastermindProject
                     if (tour == 1)
                     {
                         joueur2.saisirCodeManche();
-                        reponse_placement(joueur1.Code_devine,joueur2.Code_secret);
+                        reponse_placement(joueur2.Code_devine,joueur1.Code_secret);
                         joueur2.Nombre_coup++;
                         tour--;
                     }
@@ -98,17 +117,17 @@ namespace MastermindProject
             if (Fin_de_partie == true)
             {
                 Console.Out.WriteLine("Partie terminée !!");
-                if (joueur1.Nombre_coup < joueur2.Nombre_coup)
+                if (compareCode(joueur1.Code_devine,joueur2.Code_secret) && !compareCode(joueur2.Code_devine,joueur1.Code_secret))
                 {
-                    Console.Out.WriteLine("Félicitations ! {0} gagne la partie au bout de {1} manches !", joueur1.Nom, joueur1.Nombre_coup);
+                    Console.Out.WriteLine("Félicitations ! {0} gagne la partie au bout de {1} coups !", joueur1.Nom, joueur1.Nombre_coup);
                 }
-                else if (joueur2.Nombre_coup < joueur1.Nombre_coup)
+                else if (compareCode(joueur2.Code_devine,joueur1.Code_secret) && !compareCode(joueur1.Code_devine,joueur2.Code_secret))
                 {
-                    Console.Out.WriteLine("Félicitations ! {0} gagne la partie au bout de {1} manches !", joueur2.Nom, joueur2.Nombre_coup);
+                    Console.Out.WriteLine("Félicitations ! {0} gagne la partie au bout de {1} coups !", joueur2.Nom, joueur2.Nombre_coup);
                 }
-                else if(joueur1.Nombre_coup == joueur2.Nombre_coup)
+                else if(compareCode(joueur1.Code_devine,joueur2.Code_secret) && compareCode(joueur2.Code_devine,joueur1.Code_secret))
                 {
-                    Console.Out.WriteLine("Incroyable ! Vous avez trouvé la solution en même temps, égalité au bout de {0} manches.", joueur2.Nombre_coup);
+                    Console.Out.WriteLine("Incroyable ! Vous avez trouvé la solution en même temps, égalité au bout de {0} coups.", joueur2.Nombre_coup);
                 }
             }
 
@@ -129,8 +148,6 @@ namespace MastermindProject
             }
             return true;
         }
-
-
 
     }
 
