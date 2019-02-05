@@ -10,7 +10,7 @@ namespace MastermindProject
         private bool fin_de_partie = false;
 
 
-        public Jeu()
+        public Jeu() // constructeur par défaut
         {
             this.nb_manche = 0;
             this.tour = 0;
@@ -24,27 +24,52 @@ namespace MastermindProject
         public int Tour { get => tour; set => tour = value;  }
         public bool Fin_de_partie { get => fin_de_partie; set => fin_de_partie = value; }
 
+        public void reponse_placement(int[] tab1, int[] tab2)
+        {
+            int bien_place = 0;
+            for (int i = 0; i < 5; i++)
+            {
+                if (tab1[i] == tab2[i])
+                {
+                    bien_place++;
+                }
+            }
+            if (bien_place == 0)
+            {
+                Console.Out.WriteLine("Vous n'avez aucun chiffre bien placé.");
+            }
+            else if (bien_place == 1)
+            {
+                Console.Out.WriteLine("Vous avez 1 chiffre bien placé.");
+            }
+            else if (bien_place > 1 && bien_place < 5)
+            {
+                Console.Out.WriteLine("Vous avez {0} chiffres bien placés.", bien_place);
+            }
+            else if (bien_place == 5)
+            {
+                Fin_de_partie = true;
+            }
+        }
 
 
         public void play(Joueur joueur1 ,Joueur joueur2)
         {
-            while (joueur2.Fin_de_partie == false || joueur1.Fin_de_partie == false ) {
+            while (Fin_de_partie == false) {
 
-                if (nb_manche == 0)
+                if (nb_manche == 0) // Manche de saisie
                 {
 
                     if (tour == 0)
                     {
                         joueur1.saisirNom(joueur1);
                         joueur1.saisirCode();
-                        //joueur1.Nombre_coup++;
                         tour++;
                     }
                     if (tour == 1)
                     {
                         joueur2.saisirNom(joueur2);
                         joueur2.saisirCode();
-                        //joueur2.Nombre_coup++;
                         tour--;
                     }
                     nb_manche++;
@@ -52,23 +77,25 @@ namespace MastermindProject
                 else
                 {
 
-                    if (tour == 0) {
+                    if (tour == 0) { 
                         joueur1.saisirCodeManche();
-                        joueur1.reponse_placement(joueur1.Code_devine,joueur2.Code_secret);
+                        reponse_placement(joueur1.Code_devine,joueur2.Code_secret); // on compare le code que le joueur devine avec le code secret de l'autre joueur
                         joueur1.Nombre_coup++;
                         tour++;
+
+
                     }
                     if (tour == 1)
                     {
                         joueur2.saisirCodeManche();
-                        joueur2.reponse_placement(joueur2.Code_devine,joueur1.Code_secret);
+                        reponse_placement(joueur1.Code_devine,joueur2.Code_secret);
                         joueur2.Nombre_coup++;
                         tour--;
                     }
                     nb_manche++;
                 }
             }
-            if (joueur1.Fin_de_partie == true)
+            if (Fin_de_partie == true)
             {
                 Console.Out.WriteLine("Partie terminée !!");
                 if (joueur1.Nombre_coup < joueur2.Nombre_coup)
@@ -79,27 +106,12 @@ namespace MastermindProject
                 {
                     Console.Out.WriteLine("Félicitations ! {0} gagne la partie au bout de {1} manches !", joueur2.Nom, joueur2.Nombre_coup);
                 }
-                else
+                else if(joueur1.Nombre_coup == joueur2.Nombre_coup)
                 {
                     Console.Out.WriteLine("Incroyable ! Vous avez trouvé la solution en même temps, égalité au bout de {0} manches.", joueur2.Nombre_coup);
                 }
             }
-            if (joueur2.Fin_de_partie == true)
-            {
-                Console.Out.WriteLine("Partie terminée !!");
-                if (joueur1.Nombre_coup < joueur2.Nombre_coup)
-                {
-                    Console.Out.WriteLine("Félicitations ! {0} gagne la partie au bout de {1} manches !",joueur1.Nom, joueur1.Nombre_coup);
-                }
-                else if (joueur2.Nombre_coup < joueur1.Nombre_coup)
-                {
-                    Console.Out.WriteLine("Félicitations ! {0} gagne la partie au bout de {1} manches !", joueur2.Nom,joueur2.Nombre_coup);
-                }
-                else
-                {
-                    Console.Out.WriteLine("Incroyable ! Vous avez trouvé la solution en même temps, égalité au bout de {0} manches.",joueur2.Nombre_coup);
-                }
-            }
+
         }// fin play
 
         public bool verificationCodeSaisie(int[] code_secret) // a faire dans play
