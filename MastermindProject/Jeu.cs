@@ -7,28 +7,28 @@ namespace MastermindProject
         private Joueur joueur2;
         int tour;
         private int nb_manche;
+        private bool fin_de_partie = false;
 
 
         public Jeu()
         {
             this.nb_manche = 0;
             this.tour = 0;
-            this.joueur1 = new Joueur("joueur1",0, new int[5], new int[5], false);
-            this.joueur2 = new Joueur("joueur2",0, new int[5], new int[5], false);
+            this.joueur1 = new Joueur("joueur1",0, new int[5], new int[5]);
+            this.joueur2 = new Joueur("joueur2",0, new int[5], new int[5]);
         }
 
         public Joueur Joueur1 { get => joueur1; set => joueur1 = value; }
         public Joueur Joueur2 { get => joueur2; set => joueur2 = value; }
         public int Nb_manche { get => nb_manche; set => nb_manche = value; }
         public int Tour { get => tour; set => tour = value;  }
-
-
+        public bool Fin_de_partie { get => fin_de_partie; set => fin_de_partie = value; }
 
 
 
         public void play(Joueur joueur1 ,Joueur joueur2)
         {
-            while (joueur2.Fin_de_partie == false) {
+            while (joueur2.Fin_de_partie == false || joueur1.Fin_de_partie == false ) {
 
                 if (nb_manche == 0)
                 {
@@ -66,6 +66,22 @@ namespace MastermindProject
                         tour--;
                     }
                     nb_manche++;
+                }
+            }
+            if (joueur1.Fin_de_partie == true)
+            {
+                Console.Out.WriteLine("Partie terminée !!");
+                if (joueur1.Nombre_coup < joueur2.Nombre_coup)
+                {
+                    Console.Out.WriteLine("Félicitations ! {0} gagne la partie au bout de {1} manches !", joueur1.Nom, joueur1.Nombre_coup);
+                }
+                else if (joueur2.Nombre_coup < joueur1.Nombre_coup)
+                {
+                    Console.Out.WriteLine("Félicitations ! {0} gagne la partie au bout de {1} manches !", joueur2.Nom, joueur2.Nombre_coup);
+                }
+                else
+                {
+                    Console.Out.WriteLine("Incroyable ! Vous avez trouvé la solution en même temps, égalité au bout de {0} manches.", joueur2.Nombre_coup);
                 }
             }
             if (joueur2.Fin_de_partie == true)

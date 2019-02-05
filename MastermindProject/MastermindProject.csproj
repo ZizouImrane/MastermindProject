@@ -7,5 +7,6 @@
 
   <ItemGroup>
     <Compile Remove="Asupprimer.cs" />
+    <Compile Remove="ToDelete.cs" />
   </ItemGroup>
 </Project>
