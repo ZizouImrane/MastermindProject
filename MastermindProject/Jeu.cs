@@ -3,6 +3,7 @@ namespace MastermindProject
 {
     public class Jeu
     {
+
         private Joueur joueur1;
         private Joueur joueur2;
         private Ordinateur ordi;
@@ -21,34 +22,44 @@ namespace MastermindProject
         }
 
         public Joueur Joueur1 { get => joueur1; set => joueur1 = value; }
+
         public Joueur Joueur2 { get => joueur2; set => joueur2 = value; }
+
         public Ordinateur Ordi { get => ordi; set => ordi = value; }
+
         public int Nb_manche { get => nb_manche; set => nb_manche = value; }
+
         public int Tour { get => tour; set => tour = value; }
+
         public bool Fin_de_partie { get => fin_de_partie; set => fin_de_partie = value; }
+
 
         public void reponse_placement(int[] tab1, int[] tab2)
         {
             int bien_place = 0;
-            for (int i = 0; i < 5; i++)
-            {
-                if (tab1[i] == tab2[i])
+                for (int i = 0; i < 5; i++)
                 {
-                    bien_place++;
+                    if (tab1[i] == tab2[i])
+                    {
+                        bien_place++;
+                    }
                 }
-            }
+
             if (bien_place == 0)
             {
                 Console.Out.WriteLine("Vous n'avez aucun chiffre bien placé.");
             }
+
             else if (bien_place == 1)
             {
                 Console.Out.WriteLine("Vous avez 1 chiffre bien placé.");
             }
+
             else if (bien_place > 1 && bien_place < 5)
             {
                 Console.Out.WriteLine("Vous avez {0} chiffres bien placés.", bien_place);
             }
+
             else if (bien_place == 5)
             {
                 Fin_de_partie = true;
@@ -75,7 +86,6 @@ namespace MastermindProject
 
         public void play(Joueur joueur1, Joueur joueur2)
         {
-           
                 while (Fin_de_partie == false)
                 {
 
@@ -88,14 +98,18 @@ namespace MastermindProject
                             joueur1.saisirCode();
                             tour++;
                         }
+
                         if (tour == 1)
                         {
                             joueur2.saisirNom(joueur2);
                             joueur2.saisirCode();
                             tour--;
                         }
+
                         nb_manche++;
+
                     }
+
                     else
                     {
 
@@ -109,6 +123,7 @@ namespace MastermindProject
 
 
                         }
+
                         if (tour == 1)
                         {
                             joueur2.saisirCodeManche();
@@ -116,20 +131,27 @@ namespace MastermindProject
                             joueur2.Nombre_coup++;
                             tour--;
                         }
+
                         nb_manche++;
+
                     }
+
                 }
+
                 if (Fin_de_partie == true)
                 {
                     Console.Out.WriteLine("Partie terminée !!");
+
                     if (compareCode(joueur1.Code_devine, joueur2.Code_secret) && !compareCode(joueur2.Code_devine, joueur1.Code_secret))
                     {
                         Console.Out.WriteLine("Félicitations ! {0} gagne la partie au bout de {1} coups !", joueur1.Nom, joueur1.Nombre_coup);
                     }
+
                     else if (compareCode(joueur2.Code_devine, joueur1.Code_secret) && !compareCode(joueur1.Code_devine,joueur2.Code_secret))
                     {
                         Console.Out.WriteLine("Félicitations ! {0} gagne la partie au bout de {1} coups !", joueur2.Nom, joueur2.Nombre_coup);
                     }
+
                     else if ( compareCode(joueur1.Code_devine, joueur2.Code_secret) && compareCode(joueur2.Code_devine, joueur1.Code_secret))
                     {
                         Console.Out.WriteLine("Incroyable ! Vous avez trouvé la solution en même temps, égalité au bout de {0} coups.", joueur2.Nombre_coup);
@@ -137,31 +159,6 @@ namespace MastermindProject
                 }
 
             }// fin play
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         public void playComputer(Joueur joueur1, Ordinateur ordi)
@@ -179,14 +176,18 @@ namespace MastermindProject
                         joueur1.saisirCode();
                         tour++;
                     }
+
                     if (tour == 1)
                     {
                         //joueur2.saisirNom(joueur2);
                         ordi.saisirCode();
                         tour--;
                     }
+
                     nb_manche++;
+
                 }
+
                 else
                 {
 
@@ -200,6 +201,7 @@ namespace MastermindProject
 
 
                     }
+
                     if (tour == 1)
                     {
                         ordi.saisirCodeManche();
@@ -207,24 +209,31 @@ namespace MastermindProject
                         ordi.Nombre_coup++;
                         tour--;
                     }
+
                     nb_manche++;
+
                 }
             }
+
             if (Fin_de_partie == true)
             {
                 Console.Out.WriteLine("Partie terminée !!");
+
                 if (compareCode(joueur1.Code_devine, ordi.Code_secret) && !compareCode(ordi.Code_devine, joueur1.Code_secret))
                 {
                     Console.Out.WriteLine("Félicitations ! {0} gagne la partie au bout de {1} coups !", joueur1.Nom, joueur1.Nombre_coup);
                 }
+
                 else if (compareCode(ordi.Code_devine, joueur1.Code_secret) && !compareCode(joueur1.Code_devine, ordi.Code_secret))
                 {
                     Console.Out.WriteLine("Félicitations ! {0} gagne la partie au bout de {1} coups !", ordi.Nom, ordi.Nombre_coup);
                 }
+
                 else if (compareCode(joueur1.Code_devine, ordi.Code_secret) && compareCode(ordi.Code_devine, joueur1.Code_secret))
                 {
                     Console.Out.WriteLine("Incroyable ! Vous avez trouvé la solution en même temps, égalité au bout de {0} coups.", ordi.Nombre_coup);
                 }
+
             }
 
         }// fin playComputer
@@ -234,5 +243,3 @@ namespace MastermindProject
        
 
     }
-
-
