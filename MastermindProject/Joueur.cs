@@ -16,7 +16,15 @@ namespace MastermindProject
             this.code_devine = code_devine;
         }
 
-        public void saisirCode()
+
+        public Joueur()
+        {
+            this.nom = "Joueur ";
+            this.nombre_coup = 0;
+            this.code_secret = new int[5];
+            this.code_devine= new int[5];
+        }
+        public virtual void saisirCode()
         {
             // demander de saisir les 5 chiffres : n1 -> code_secret[0] ... n5 -> code_secret[4]
 
@@ -30,7 +38,7 @@ namespace MastermindProject
             }
         }
 
-        public void saisirCodeManche()
+        public virtual void saisirCodeManche()
         {
             Console.Out.WriteLine("{0}, essayez de deviner le code, entrez le chiffre par chiffre : ", this.Nom);
             int h = 0;
@@ -48,8 +56,6 @@ namespace MastermindProject
             Console.Write("{0}, saisissez votre nom : ",j.Nom);
             j.Nom = Console.ReadLine();
         }
-
-
 
         public string Nom { get => nom; set => nom = value; }
         public int Nombre_coup { get => nombre_coup; set => nombre_coup = value; }

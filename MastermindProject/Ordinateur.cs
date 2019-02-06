@@ -1,16 +1,16 @@
 ﻿using System;
 namespace MastermindProject
 {
-    /*public class Ordinateur : Joueur
+    public class Ordinateur : Joueur
     {
-        public Ordinateur()
+        public Ordinateur(int nombre_coup, int[] code_secret, int[] code_devine) : base("Computer", nombre_coup, code_secret, code_devine)
         {
-            this.Nom = "Computer";
-            this.Nombre_coup = nombre_coup;
-            this.code_secret = code_secret;
-            this.code_devine = code_devine;
         }
+        public Ordinateur() :base()
+        {
 
+        }
+        override
         public void saisirCode()
         {
             int k = 0;
@@ -22,6 +22,7 @@ namespace MastermindProject
             }
         }
 
+        override
         public void saisirCodeManche()
         {
             Console.Out.WriteLine("{0}, essayez de deviner le code, entrez le chiffre par chiffre : ", this.Nom);
@@ -32,10 +33,11 @@ namespace MastermindProject
                 Console.Write("{0} : ", h + 1);
                 code_devine[h] = rand.Next(10);
                 h++;
+
             }
 
         }
 
 
-    }*/
+    }
 }
