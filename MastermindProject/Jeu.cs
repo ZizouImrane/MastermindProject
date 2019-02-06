@@ -7,10 +7,11 @@ namespace MastermindProject
         private Joueur joueur1;
         private Joueur joueur2;
         private Ordinateur ordi;
-        int tour;
         private int nb_manche;
         private bool fin_de_partie = false;
+        int tour;
 
+        // Les constructeurs
 
         public Jeu() // constructeur par défaut
         {
@@ -20,6 +21,8 @@ namespace MastermindProject
             this.joueur2 = new Joueur("joueur2", 0, new int[5], new int[5]);
             this.ordi = new Ordinateur(0, new int[5], new int[5]);
         }
+
+        // Les getters setters
 
         public Joueur Joueur1 { get => joueur1; set => joueur1 = value; }
 
@@ -33,6 +36,7 @@ namespace MastermindProject
 
         public bool Fin_de_partie { get => fin_de_partie; set => fin_de_partie = value; }
 
+        // Les méthodes
 
         public void reponse_placement(int[] tab1, int[] tab2)
         {
@@ -47,17 +51,17 @@ namespace MastermindProject
 
             if (bien_place == 0)
             {
-                Console.Out.WriteLine("Vous n'avez aucun chiffre bien placé.");
+                Console.Out.WriteLine("\nVous n'avez aucun chiffre bien placé.\n");
             }
 
             else if (bien_place == 1)
             {
-                Console.Out.WriteLine("Vous avez 1 chiffre bien placé.");
+                Console.Out.WriteLine("\nVous avez 1 chiffre bien placé.\n");
             }
 
             else if (bien_place > 1 && bien_place < 5)
             {
-                Console.Out.WriteLine("Vous avez {0} chiffres bien placés.", bien_place);
+                Console.Out.WriteLine("\nVous avez {0} chiffres bien placés.\n", bien_place);
             }
 
             else if (bien_place == 5)
@@ -158,7 +162,13 @@ namespace MastermindProject
                     }
                 }
 
-            }// fin play
+            }
+
+
+
+
+
+
 
 
         public void playComputer(Joueur joueur1, Ordinateur ordi)
@@ -236,8 +246,7 @@ namespace MastermindProject
 
             }
 
-        }// fin playComputer
-
+        }
 
     }
        

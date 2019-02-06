@@ -6,7 +6,8 @@ namespace MastermindProject
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Combien de joueurs ? (1 pour jouer contre l'ordinateur ou 2 pour jouer contre un ami)");
+            Console.WriteLine("!!! BIENVENUE SUR LE JEU DU MASTERMIND !!! \n\n");
+            Console.WriteLine("Combien de joueurs êtes-vous ?\n( Saississez : 1 pour jouer contre l'Ordinateur ou 2 pour jouer contre un de vos amis. ) ");
             int nb_j = int.Parse(Console.ReadLine());
             if (nb_j == 1)
             {

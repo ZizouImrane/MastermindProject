@@ -36,6 +36,7 @@ namespace MastermindProject
                 code_secret[n] = (int.Parse(Console.ReadLine()));
                 n++;
             }
+            Console.Clear();
         }
 
         public virtual void saisirCodeManche()

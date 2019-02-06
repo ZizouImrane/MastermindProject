@@ -24,7 +24,7 @@ namespace MastermindProject
                 code_secret[k] = rand.Next(10); // génère un entier entre 0 et 9
                 k++;
             }
-
+            
         }
 
         override
@@ -36,12 +36,12 @@ namespace MastermindProject
 
             while (h < 5)
             {
-                Console.Write("{0} : ", h + 1);
+                //Console.Write("{0} : ", h + 1);
                 code_devine[h] = rand.Next(10);
                 h++;
 
             }
-
+            Console.Write("\nCode secret saisi.\n");
         }
 
     }
