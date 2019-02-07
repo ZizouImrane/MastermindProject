@@ -9,7 +9,7 @@ namespace MastermindProject
         private Ordinateur ordi;
         private int nb_manche;
         private bool fin_de_partie = false;
-        int tour;
+        private int tour;
 
         // Les constructeurs
 
@@ -165,12 +165,6 @@ namespace MastermindProject
             }
 
 
-
-
-
-
-
-
         public void playComputer(Joueur joueur1, Ordinateur ordi)
         {
 
@@ -248,7 +242,26 @@ namespace MastermindProject
 
         }
 
-    }
-       
+        /*
+         *          On ne s'est pas servi de cette fonction par manque de temps.
+         * 
+         * public bool verificationCodeSaisie(int[] code_secret)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if (code_secret[i] >= 0 && code_secret[i] <= 9)
+                {
+                }
+                else
+                {
+                    return false;
+                }
 
+            }
+            return true;
+        }
+        */
     }
+
+
+}
